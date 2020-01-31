@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Resource Test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="/css/lightbox.css">
+</head>
+
+<body>
+
+  {{block "Here" .}} {{end}}
+  <h3>A Complete Mystery</h3>
+  {{block "Show" .}}{{end}} 
+  {{ block "List" . }}{{end}}
+  {{ block "NewList" .}}{{ end }}
+  {{ block "GnuList" .}}{{ end }}
+  {{ block "NuList" .}}{{ end }} 
+
+  <p>Permalink: {{.Permalink}}</p>
+  <p>IsHome: {{.IsHome}}</p>
+  <p>Resources: {{.Resources}}</p>
+  <p>Title: {{.Title}}</p>
+  {{ printf "%#v" . }}
+
+  <p>Permalink:  {{ printf "%#v" .Permalink }}</p>
+  <p>Site:   {{ printf "%#v" $.Site }}</p>  
+
+  
+
+ <h3>WHAT????</h3> 
+ 
+{{.Title}}
+{{ block "Resources" .}}{{end}}
+
+ {{if eq .Title "Beta"}} 
+  {{ block "Resources" .}}{{end}}
+{{end}}
+
+{{ if eq .Title "Alpha"}}
+  {{ block "Resources2" .}}{{end}}
+{{end}}
+
+{{.Content}}
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/lightbox.js"></script>
+<script>
+        lightbox.option({
+          'resizeDuration': 80,
+          'wrapAround': true,
+          'fadeDuration': 80,
+          'imageFadeDuration':100
+        })
+    </script>
+</body>
+
+</html>

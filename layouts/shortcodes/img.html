@@ -1,0 +1,59 @@
+<p>Match</p>
+{{ with .Page.Resources.Match "images/**.JPG"}}
+    {{range .}}
+        <img src = "{{.RelPermalink}}" style = "height:200px; width:200px;">
+    {{end}}
+{{end}}  
+
+<p>ByType</p>
+{{ with .Page.Resources.ByType "image"}}
+    {{range .}}
+    
+        <img src = "{{.RelPermalink}}" style = "height:200px; width:200px;">
+        
+    {{end}}
+{{end}}   
+
+
+<p>With Title</p>
+{{$path :=  (.Get "path")}}
+{{$path}}
+{{ with .Page.Params.pics}}
+    {{range .}}
+        {{/*  <img src = "/section1/alpha/images/{{.img}}" style = "height:200px; width:200px;">  */}}
+        <div>
+            <a href="{{$path}}/{{.img}}" data-title="{{.title}}" data-lightbox="Sample"><img src = "{{$path}}/{{.img}}" style = "height:200px; width:200px;"></a>
+           
+            {{/*  <img src = "{{$path}}/{{.img}}" style = "height:200px; width:200px;"> */}}
+            <p>{{.title}}</p>  
+        </div>
+    {{end}}
+{{end}}  
+
+
+<!-- TEST -->
+<h3>TEST</h3>
+
+
+{{with .Page.Resources.ByType "image"}}
+{{ range .}}
+   {{$s := .Resize "500x"}}
+   <p>{{$s}}</p>
+   <p>{{.}}</p>
+  <div><img src= "{{.RelPermalink}}"></div>
+  {{end}}
+{{end}}
+
+
+
+
+
+{{ with .Page.Resources.ByType "image" }}
+	<div class="Image">
+    {{ range . }}
+        <img src="{{ .RelPermalink }}">
+        <p>{{.Name}}</p>
+        <p>{{.Title}}</p>
+	{{ end }}
+	</div>
+{{ end }}

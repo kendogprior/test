@@ -1,0 +1,92 @@
+{{define "Here" }}
+    <h2 class = "heading_1">{{ .Params.heading }}</h2>
+    {{.Content}}
+{{end}}
+
+
+{{define "Show"}}
+    <h4>Show</h4>
+    {{with .Resources.ByType "image"}}
+        {{range .}}
+            <img src = "{{.RelPermalink}}" style = "width:250px; height:250px">     
+        {{end}}
+    {{end}}
+    <hr/>
+{{end}}
+
+{{ define "List" }}
+    <h4>List with Titles</h4>
+    {{$plink:= .Permalink}}
+    {{/*  {{$plink}}  */}}
+    <div>
+        {{ range .Params.resources }}
+        <div>
+            <div>
+                <img src = "/section2/beta/images/{{ .source }}" style = "width:250px; height:250px"><br/>
+                {{ .title}}
+            </div>
+            
+            <img src = "{{$plink}}/images/{{ .source }}" style = "width:250px; height:250px"><br/>
+            {{ .title}}
+        </div>
+        <hr/>
+        {{ end }}
+    </div>
+<hr/>
+{{end}}
+
+
+
+
+{{ define "NewList" }}
+    <h4>NewList</h4>
+    {{ range .Resources.Match "**.JPG" }}
+        <div>
+            <img src="{{ .Permalink }}" style = "width:250px; height:250px">
+            {{ with .Params.credits }}.{{  end }}
+        </div>
+    {{ end }}
+    <hr/>
+{{ end }}
+
+
+<!-- {{ define "GnuList"}}
+    <h4>GnuList</h4>
+    {{ range .Params.pics "**.JPG"}}
+    
+        <img src="{{ .Permalink }}" alt="Boo" style = "width:200px; height:200px">
+        <p>{{ .Title }}</p>
+    {{ end }}
+    <hr/>
+{{ end }}   -->
+
+{{ define "NuList"}}
+    <h4>NuList</h4>
+    {{ range .Params.pics}}
+        <img src="{{ .img }}" alt="Boo" style = "width:200px; height:200px">
+        <p>{{ .title }}</p>
+    {{ end }}
+    <hr/>
+{{ end }}
+
+
+{{ define "Resources1"}}
+<h2>Resource Test</h2>
+    {{ with .Resources.ByType "image" }}
+        <div class="Image">
+        {{ range .}}
+            <img src="{{ .RelPermalink }}" style= "width:200px; height:200px">
+        {{ end }}
+        </div>
+    {{ end }}
+{{end}}
+
+{{ define "Resources2"}}
+<h2>Resource Test 2</h2>
+    {{ range .Resources.ByType "image" }}
+        <div class="Image">
+            <img src="{{ .RelPermalink }}" style= "width:200px; height:200px">   
+        </div>
+    {{ end }}
+{{end}}
+
